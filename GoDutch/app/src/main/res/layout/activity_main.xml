@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,22 +7,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        />
+
+    <TextView
+        android:id="@+id/text_display"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detected text"
+        android:layout_below="@+id/image_view"
+        android:textSize="26dp"
+        android:maxLines="5"
+        android:layout_margin="10dp"
+    />
+
+    <Button
+        android:id="@+id/detect_text_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_wybierz"
+        android:text="Wykryj tekst"
+        />
+
     <Button
         android:id="@+id/button_wybierz"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/capture_image"
         android:text="Wybierz z galerii"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        />
 
     <Button
-        android:id="@+id/button_zrob"
-        android:layout_width="wrap_content"
+        android:id="@+id/capture_image"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:text="Zrób zdjęcie"
-        app:layout_constraintBottom_toTopOf="@+id/button_wybierz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
