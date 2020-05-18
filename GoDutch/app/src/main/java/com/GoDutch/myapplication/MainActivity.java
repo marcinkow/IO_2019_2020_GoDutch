@@ -17,10 +17,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
-import com.google.firebase.ml.vision.text.FirebaseVisionTextDetector;
+import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -118,8 +119,27 @@ public class MainActivity extends AppCompatActivity {
     private void detectTextFromImage()
     {
         FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(imageBitmap);
-        FirebaseVisionTextDetector firebaseVisionTextDetector = FirebaseVision.getInstance().getVisionTextDetector();
-        firebaseVisionTextDetector.detectInImage(firebaseVisionImage).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+        FirebaseVisionTextRecognizer firebaseVisionTextDetector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+        Task<FirebaseVisionText> result =
+                firebaseVisionTextDetector.processImage(firebaseVisionImage)
+                        .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                            @Override
+                            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                                // Task completed successfully
+                                displayTextFromImage(firebaseVisionText);
+                            }
+                        })
+                        .addOnFailureListener(
+                                new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        // Task failed with an exception
+                                        Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        Log.d("Error: ", e.getMessage());
+                                    }
+                                });
+        /*firebaseVisionTextDetector.detectInImage(firebaseVisionImage).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
             @Override
             public void onSuccess(FirebaseVisionText firebaseVisionText)
             {
@@ -133,19 +153,19 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d("Error: ", e.getMessage());
             }
-        });
+        });*/
     }
 
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText)
     {
-        List<FirebaseVisionText.Block> blockList = firebaseVisionText.getBlocks();
+        List<FirebaseVisionText.TextBlock> blockList = firebaseVisionText.getTextBlocks();
         if(blockList.size() == 0)
         {
             Toast.makeText(this, "No text found!", Toast.LENGTH_SHORT).show();
         }
         else
         {
-            for (FirebaseVisionText.Block block : firebaseVisionText.getBlocks())
+            for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks())
             {
                 String text = block.getText();
                 textView.setText(text);
