@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -20,7 +21,10 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextDetector;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -57,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 dispatchTakePictureIntent();
+                //CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(this);
                 textView.setText("");
             }
         });
@@ -75,18 +80,38 @@ public class MainActivity extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null)
         {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .start(this);
+            //startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK)
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
         {
-            Bundle extras = data.getExtras();
-            imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if(resultCode == RESULT_OK)
+            {
+                Uri resultUri = result.getUri();
+                imageView.setImageURI(resultUri);
+                try {
+                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+            else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
+            {
+                Exception error  = result.getError();
+            }
+
+            //Bundle extras = data.getExtras();
+            //imageBitmap = (Bitmap) extras.get("data");
+            //imageView.setImageBitmap(imageBitmap);
         }
     }
 
