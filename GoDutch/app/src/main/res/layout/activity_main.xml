@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="Detected text"
         android:layout_below="@+id/image_view"
-        android:textSize="26dp"
+        android:textSize="20dp"
         android:maxLines="5"
         android:layout_margin="10dp"
     />
@@ -28,16 +28,9 @@
         android:id="@+id/detect_text_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_wybierz"
-        android:text="Wykryj tekst"
-        />
-
-    <Button
-        android:id="@+id/button_wybierz"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_above="@+id/capture_image"
-        android:text="Wybierz z galerii"
+        android:text="Podziel paragon!"
+        android:textAllCaps="false"
         />
 
     <Button
@@ -45,7 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Zrób zdjęcie"
+        android:text="Wybierz lub zrób zdjęcie!"
+        android:textAllCaps="false"
         />
 
 </RelativeLayout>

@@ -42,16 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn = (Button)findViewById(R.id.button_wybierz);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WybierzZGalerii.class));
-            }
-        });
-
-//------------------------------------------------------------------------------------------------------
         captureImageBtn = findViewById(R.id.capture_image);
         detectTextBtn = findViewById(R.id.detect_text_image);
         imageView = findViewById(R.id.image_view);
@@ -62,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 dispatchTakePictureIntent();
-                //CropImage.activity().setGuidelines(CropImageView.Guidelines.ON).start(this);
                 textView.setText("");
             }
         });
@@ -84,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             CropImage.activity()
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .start(this);
-            //startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
@@ -109,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
             {
                 Exception error  = result.getError();
             }
-
-            //Bundle extras = data.getExtras();
-            //imageBitmap = (Bitmap) extras.get("data");
-            //imageView.setImageBitmap(imageBitmap);
         }
     }
 
@@ -139,21 +123,6 @@ public class MainActivity extends AppCompatActivity {
                                         Log.d("Error: ", e.getMessage());
                                     }
                                 });
-        /*firebaseVisionTextDetector.detectInImage(firebaseVisionImage).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-            @Override
-            public void onSuccess(FirebaseVisionText firebaseVisionText)
-            {
-                displayTextFromImage(firebaseVisionText);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e)
-            {
-                Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                Log.d("Error: ", e.getMessage());
-            }
-        });*/
     }
 
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText)
