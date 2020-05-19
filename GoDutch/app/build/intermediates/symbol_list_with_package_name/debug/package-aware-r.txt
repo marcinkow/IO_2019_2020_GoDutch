@@ -837,7 +837,6 @@ id beginning
 id blocking
 id bottom
 id buttonPanel
-id button_wybierz
 id capture_image
 id center
 id centerCrop
@@ -873,7 +872,6 @@ id expand_activities_button
 id expanded_menu
 id fitCenter
 id forever
-id gallery_number
 id glide_custom_view_target_tag
 id gone
 id group_divider
@@ -917,7 +915,6 @@ id progress_circular
 id progress_horizontal
 id radio
 id rectangle
-id recyclerview_gallery_images
 id right
 id right_icon
 id right_side
@@ -1020,12 +1017,13 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_koncowy
 layout activity_main
-layout activity_wybierz_z_galerii
+layout activity_osoby_do_podzialu
+layout activity_podzial_paragonu
 layout crop_image_activity
 layout crop_image_view
 layout custom_dialog
-layout galeria_item
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big

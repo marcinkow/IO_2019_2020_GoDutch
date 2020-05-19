@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -125,22 +126,49 @@ public class MainActivity extends AppCompatActivity {
                                 });
     }
 
-    private void displayTextFromImage(FirebaseVisionText firebaseVisionText)
-    {
-        List<FirebaseVisionText.TextBlock> blockList = firebaseVisionText.getTextBlocks();
-        if(blockList.size() == 0)
-        {
-            Toast.makeText(this, "No text found!", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks())
-            {
-                String text = block.getText();
-                textView.setText(text);
-            }
-        }
+//    private void displayTextFromImage(FirebaseVisionText firebaseVisionText)
+//    {
+//        List<FirebaseVisionText.TextBlock> blockList = firebaseVisionText.getTextBlocks();
+//        if(blockList.size() == 0)
+//        {
+//            Toast.makeText(this, "No text found!", Toast.LENGTH_SHORT).show();
+//        }
+//        else
+//        {
+//            int ile=0;
+//            String [] tekst;
+//            for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks())
+//            {
+//                tekst[ile]=block.getText();
+////                String text = block.getText();
+//                ++ile;
+////                textView.setText(text);
+//                textView.setText(tekst[ile]);
+////                textView.setText("1");
+//                System.out.println(ile);
+//            }
+//
+//        }
+//
+//    }
 
+    private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
+        textView.setText(null);
+        if (firebaseVisionText.getTextBlocks().size() == 0) {
+            Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
+            return;
+        }
+        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+            textView.append(block.getText());
+
+            //każda linia
+
+//			for (FirebaseVisionText.Line line: block.getLines()) {
+//				for (FirebaseVisionText.Element element: line.getElements()) {
+//                    textView.append(element.getText() + " ");
+//                }
+//			}
+
+        }
     }
-
 }
