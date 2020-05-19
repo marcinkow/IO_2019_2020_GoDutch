@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "743477879038",
+    "firebase_url": "https://godutch-31af2.firebaseio.com",
+    "project_id": "godutch-31af2",
+    "storage_bucket": "godutch-31af2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743477879038:android:8664f2b9f3e2b5fcc885af",
+        "android_client_info": {
+          "package_name": "com.GoDutch.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743477879038-57fkjbvd08oeesgm2ai67in6n2dmd7ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyksLQep9N8LM9mwS2OyNwADb5HdL4clI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743477879038-57fkjbvd08oeesgm2ai67in6n2dmd7ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
