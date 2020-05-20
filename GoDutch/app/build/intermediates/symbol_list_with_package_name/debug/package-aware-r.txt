@@ -826,6 +826,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id additems
 id adjust_height
 id adjust_width
 id alertTitle
@@ -836,6 +837,7 @@ id barrier
 id beginning
 id blocking
 id bottom
+id button
 id buttonPanel
 id capture_image
 id center
@@ -867,6 +869,7 @@ id dimensions
 id direct
 id disableHome
 id edit_query
+id edittxt
 id end
 id expand_activities_button
 id expanded_menu
@@ -893,6 +896,7 @@ id light
 id line1
 id line3
 id listMode
+id listView
 id list_item
 id message
 id middle
@@ -910,6 +914,7 @@ id oval
 id packed
 id parent
 id parentPanel
+id passForward
 id percent
 id progress_circular
 id progress_horizontal

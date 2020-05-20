@@ -34,7 +34,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button captureImageBtn, detectTextBtn;
+    Button captureImageBtn, detectTextBtn, tempBut;
     ImageView imageView;
     TextView textView;
     Bitmap imageBitmap;
@@ -50,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
         detectTextBtn = findViewById(R.id.detect_text_image);
         imageView = findViewById(R.id.image_view);
         textView = findViewById(R.id.text_display);
+
+        tempBut = findViewById(R.id.button);
+
+        tempBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openOsobyDoPodzialu();
+            }
+        });
 
         captureImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
                 detectTextFromImage();
             }
         });
+    }
+
+    private void openOsobyDoPodzialu()
+    {
+        Intent intent = new Intent(this, OsobyDoPodzialu.class);
+        startActivity(intent);
     }
 
     private void dispatchTakePictureIntent()
