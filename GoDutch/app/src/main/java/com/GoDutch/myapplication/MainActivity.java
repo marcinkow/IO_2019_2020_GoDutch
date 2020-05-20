@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.webkit.ConsoleMessage;
@@ -23,6 +25,7 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
+import com.google.firebase.ml.vision.text.RecognizedLanguage;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -126,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
                                 });
     }
 
+
 //    private void displayTextFromImage(FirebaseVisionText firebaseVisionText)
 //    {
 //        List<FirebaseVisionText.TextBlock> blockList = firebaseVisionText.getTextBlocks();
@@ -154,21 +158,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
         textView.setText(null);
+        textView.setMovementMethod(new ScrollingMovementMethod());
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
         }
         for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-            textView.append(block.getText());
+//            textView.append(block.getText());
+
 
             //każda linia
 
-//			for (FirebaseVisionText.Line line: block.getLines()) {
-//				for (FirebaseVisionText.Element element: line.getElements()) {
-//                    textView.append(element.getText() + " ");
-//                }
-//			}
+			for (FirebaseVisionText.Line line: block.getLines()) {
+				for (FirebaseVisionText.Element element: line.getElements()) {
+                    textView.append(element.getText() + "\n");
+                }
+			}
 
         }
     }
+
+
 }

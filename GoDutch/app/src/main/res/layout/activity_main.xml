@@ -16,13 +16,14 @@
     <TextView
         android:id="@+id/text_display"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Detected text"
+        android:layout_height="237dp"
         android:layout_below="@+id/image_view"
-        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:maxLines="40"
-        android:layout_margin="10dp"
-    />
+        android:scrollbars="vertical"
+        android:text="Detected text"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/detect_text_image"
