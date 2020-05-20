@@ -1,4 +1,4 @@
-#Wed May 20 02:28:00 CEST 2020
-base.0=C\:\\Users\\marci\\Desktop\\Projekt\\GoDutch\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
+#Wed May 20 14:45:09 CEST 2020
+base.0=C\:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
