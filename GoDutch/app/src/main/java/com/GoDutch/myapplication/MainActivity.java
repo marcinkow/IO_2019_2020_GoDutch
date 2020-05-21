@@ -174,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
         textView.setText(null);
         textView.setMovementMethod(new ScrollingMovementMethod());
+
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
@@ -182,12 +183,14 @@ public class MainActivity extends AppCompatActivity {
 //            textView.append(block.getText());
 
 
-            //każda linia
 
+            //każda linia
+//
 			for (FirebaseVisionText.Line line: block.getLines()) {
-				for (FirebaseVisionText.Element element: line.getElements()) {
-                    textView.append(element.getText() + "\n");
-                }
+//				for (FirebaseVisionText.Element element: line.getElements()) { // z tym kazde pojedyncze słowo 
+//                    textView.append(element.getText() + "\n");
+                    textView.append(line.getText() + "\n");
+//                }
 			}
 
         }
