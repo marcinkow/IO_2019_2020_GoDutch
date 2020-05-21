@@ -34,7 +34,7 @@ public class OsobyDoPodzialu extends AppCompatActivity {
         btnAdd = findViewById(R.id.additems);
         btnForward = findViewById(R.id.passForward);
         listView = findViewById(R.id.listView);
-        String[] osoby = {};
+        String[] osoby = {"Ja"};
         arrayList = new ArrayList<>(Arrays.asList(osoby));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);

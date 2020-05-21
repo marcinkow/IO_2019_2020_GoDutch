@@ -995,6 +995,7 @@ id textViewProd6
 id textViewProd7
 id textViewProd8
 id text_display
+id text_display2
 id time
 id title
 id titleDividerNoCustom
