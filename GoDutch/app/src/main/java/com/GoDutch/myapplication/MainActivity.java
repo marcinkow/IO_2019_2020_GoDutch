@@ -5,14 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.webkit.ConsoleMessage;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,19 +23,23 @@ import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
-import com.google.firebase.ml.vision.text.RecognizedLanguage;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     Button captureImageBtn, detectTextBtn, tempBut;
     ImageView imageView;
-    TextView textView;
-    Bitmap imageBitmap;
+    TextView textView, textView2;
+    Bitmap productBitmap;
+    Bitmap priceBitmap;
+    Uri mainPic;
+    Uri productPic = null;
+    Uri pricePic = null;
+    Uri temp = null;
+    int helper = 0;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
 
@@ -50,13 +52,16 @@ public class MainActivity extends AppCompatActivity {
         detectTextBtn = findViewById(R.id.detect_text_image);
         imageView = findViewById(R.id.image_view);
         textView = findViewById(R.id.text_display);
+        textView2 = findViewById(R.id.text_display2);
 
         tempBut = findViewById(R.id.button);
 
         tempBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openOsobyDoPodzialu();
+                cropProduct();
+                cropPrice();
+                //openOsobyDoPodzialu();
             }
         });
 
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                //Toast.makeText(getBaseContext(), "Dokonaj wstępnego przycięcia zdjęcia!", Toast.LENGTH_LONG).show(); -- nie bangla
                 dispatchTakePictureIntent();
                 textView.setText("");
             }
@@ -95,6 +101,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void cropProduct() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null)
+        {
+            CropImage.activity(mainPic)
+                    .start(this);
+        }
+    }
+
+    private void cropPrice() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null)
+        {
+            CropImage.activity(mainPic)
+                    .start(this);
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -103,14 +127,34 @@ public class MainActivity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if(resultCode == RESULT_OK)
             {
-                Uri resultUri = result.getUri();
-                imageView.setImageURI(resultUri);
-                try {
-                    imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), resultUri);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(helper == 0) //jesli main jest pusty
+                {
+                    temp = result.getUri();
+                    mainPic = temp;
+                    imageView.setImageURI(mainPic);
+                    helper = 1;
                 }
-
+                else if (helper == 1) // jesli nie ma wycietych produktow
+                {
+                    temp = result.getUri();
+                    productPic = temp;
+                    try {
+                        productBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), productPic);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    helper = 2;
+                }
+                else if(helper == 2) //jezeli nie ma wycietych cen
+                {
+                    temp = result.getUri();
+                    pricePic = temp;
+                    try {
+                        priceBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), pricePic);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
             {
@@ -121,15 +165,37 @@ public class MainActivity extends AppCompatActivity {
 
     private void detectTextFromImage()
     {
-        FirebaseVisionImage firebaseVisionImage = FirebaseVisionImage.fromBitmap(imageBitmap);
-        FirebaseVisionTextRecognizer firebaseVisionTextDetector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
-        Task<FirebaseVisionText> result =
-                firebaseVisionTextDetector.processImage(firebaseVisionImage)
+        FirebaseVisionImage firebaseVisionProduct = FirebaseVisionImage.fromBitmap(productBitmap);
+        FirebaseVisionImage firebaseVisionPrice = FirebaseVisionImage.fromBitmap(priceBitmap);
+        FirebaseVisionTextRecognizer firebaseVisionProductDetector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+        FirebaseVisionTextRecognizer firebaseVisionPriceDetector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+        Task<FirebaseVisionText> resultProduct =
+            firebaseVisionProductDetector.processImage(firebaseVisionProduct)
+                    .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                        @Override
+                        public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                            // Task completed successfully
+                            displayTextFromImage(firebaseVisionText);
+                        }
+                    })
+                    .addOnFailureListener(
+                            new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    // Task failed with an exception
+                                    Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                    Log.d("Error: ", e.getMessage());
+                                }
+                            });
+
+        Task<FirebaseVisionText> resultPrice =
+                firebaseVisionPriceDetector.processImage(firebaseVisionPrice)
                         .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
                             @Override
-                            public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                            public void onSuccess(FirebaseVisionText firebaseVisionText2) {
                                 // Task completed successfully
-                                displayTextFromImage(firebaseVisionText);
+                                displayTextFromImage2(firebaseVisionText2);
                             }
                         })
                         .addOnFailureListener(
@@ -143,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 });
     }
-
 
 //    private void displayTextFromImage(FirebaseVisionText firebaseVisionText)
 //    {
@@ -192,6 +257,31 @@ public class MainActivity extends AppCompatActivity {
                     textView.append(line.getText() + "\n");
 //                }
 			}
+
+        }
+    }
+
+    private void displayTextFromImage2(FirebaseVisionText firebaseVisionText) {
+        textView2.setText(null);
+        textView2.setMovementMethod(new ScrollingMovementMethod());
+
+        if (firebaseVisionText.getTextBlocks().size() == 0) {
+            Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
+            return;
+        }
+        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+//            textView.append(block.getText());
+
+
+
+            //każda linia
+//
+            for (FirebaseVisionText.Line line: block.getLines()) {
+//				for (FirebaseVisionText.Element element: line.getElements()) { // z tym kazde pojedyncze słowo
+//                    textView.append(element.getText() + "\n");
+                textView2.append(line.getText() + "\n");
+//                }
+            }
 
         }
     }
