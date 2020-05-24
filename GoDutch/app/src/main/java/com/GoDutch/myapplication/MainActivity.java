@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), "Dokonaj wstępnego przycięcia zdjęcia!", Toast.LENGTH_LONG).show(); -- nie bangla
                 dispatchTakePictureIntent();
                 textView.setText("");
+                textView2.setText("");
             }
         });
 
@@ -155,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     temp = result.getUri();
                     pricePic = temp;
+                    helper = 0;
                     try {
                         priceBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), pricePic);
                     } catch (IOException e) {
