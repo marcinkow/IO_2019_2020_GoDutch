@@ -27,13 +27,14 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     public List<String> napis;
-    public List<Integer> liczby;
+    public List<String> liczby_nasze;
     Button captureImageBtn, detectTextBtn, tempBut;
     ImageView imageView;
     TextView textView, textView2;
@@ -232,11 +233,12 @@ public class MainActivity extends AppCompatActivity {
 
         for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
 			for (FirebaseVisionText.Line line: block.getLines()) {
-			    if(!line.getText().contains("RABAT"))
+			    if(!line.getText().toUpperCase().contains("RABAT") )
 			    {
                     textView.append(line.getText() + "\n ");
                     System.out.print(line.getText());
                     napis.add(line.getText());
+
                 }
             }
         }
@@ -247,70 +249,83 @@ public class MainActivity extends AppCompatActivity {
     private void displayTextFromImage2(FirebaseVisionText firebaseVisionText) {
         textView2.setText(null);
         textView2.setMovementMethod(new ScrollingMovementMethod());
-        String temp;
+        liczby_nasze = new ArrayList<>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
         }
 
+        String temp;
         String tmp;
+        String tempo;
         String wynik;
-        Integer ilosc=0;
+        Boolean czy_przekroczono=false;
+        Integer ilosc_kwot=0;
+        double tmpI1,tmpI2,wynikIntow;
         List<String> temp_liczbowy = new ArrayList<>();
+
 
         for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
             for (FirebaseVisionText.Line line : block.getLines()) {
-
+//                textView2.append( line.getText() + "\n");
                 temp_liczbowy.add(line.getText());
-                ilosc++;
+                ilosc_kwot++;
             }
         }
 
-            for(int i=0;i<ilosc;i++)
+        for(int i=0;i<ilosc_kwot-1;i++)
+        {
+            wynik=temp_liczbowy.get(i);
+            temp=temp_liczbowy.get(i+1);
+            tmp=temp;
+            tmp=tmp.replaceAll("[^\\.0123456789,-]","");
+
+            if(temp.contains("-"))
             {
-                wynik=temp_liczbowy.get(i);
-//                if(i+1>ilosc)
-//                {
-//                    temp=temp_liczbowy.get(i);
-//                }
-//                else
-//                {
-//                    temp=temp_liczbowy.get(i+1);
-//                }
-//
-//                tmp=temp;
-//                tmp=tmp.replaceAll("[^\\.0123456789,-]","");
-//                Integer tmpI1,tmpI2;
-//                if(temp.contains("-")) {
-//
-//                    if (tmp != temp) // mamy do czynienia z lidem
-//                    {
-//                        wynik=wynik.replaceAll("[^\\.0123456789,-]", "");
-////                        tmpI1=Integer.parseInt(wynik.trim());
-////                        tmpI2=Integer.parseInt(tmp.trim());
-////                        wynik= String.valueOf(tmpI1-tmpI2);
-////
-//                        textView2.append(wynik + "LI \n ");
-//
-//                    } else // biedronka
-//                    {
-//                        wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
-//                        textView2.append(wynik + "\n ");
-//                    }
-//                }
-//                else // jezeli nie ma - to wypsiuje normalnie
-//                {
+                if (!tmp.equals(temp)) // mamy do czynienia z lidem
+                {
+                    wynik=wynik.replaceAll("[^\\.0123456789,-]", "");
+
+                    tmpI1=Double.parseDouble( wynik.replace(",",".") ); //zamiana przecinka na kropke
+                    tmpI2=Double.parseDouble( tmp.replace(",",".") );
+                    wynikIntow=Math.round(tmpI1*100)+Math.round(tmpI2*100 ); //zaokrągalnie doubla
+                    tempo=String.valueOf(wynikIntow/100);
+                    tempo=tempo.replace(".",",");//zamiana kropki na przecienek
+
+                    textView2.append( tempo + "\n");
+                    liczby_nasze.add(tempo);
+                    i++;
+
+                }
+                else // biedronka
+                {
+                    wynik=temp_liczbowy.get(i+2);
                     wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
                     textView2.append(wynik+"\n");
+                    liczby_nasze.add(wynik);
+                    i=i+2;
+                    if(i+1>=ilosc_kwot){
+                        czy_przekroczono=true;
+                    }
+                }
+            }
+            else // jezeli nie ma - to wypsiuje normalnie
+            {
+                wynik = wynik.replaceAll("[^\\.0123456789,-]", ""); // wyrzucenie jakichkolwiek liter
+//                wynik = wynik.substring(0,wynik.length()-1); // usunięcie ostatniego znaku z obliczenia
+                textView2.append(wynik+"\n");
+                liczby_nasze.add(wynik);
 
-//                }
-
-
+            }
+        }
+        if(!czy_przekroczono)
+        {
+            wynik=temp_liczbowy.get(ilosc_kwot-1);
+            wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
+            textView2.append(wynik+"\n");
+            liczby_nasze.add(wynik);
         }
     }
-
-
-
 
 }
 
