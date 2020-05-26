@@ -750,6 +750,7 @@ drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_settings_black_24dp
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -773,6 +774,7 @@ id ImageView_image
 id META
 id SHIFT
 id SYM
+id accNumber
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
@@ -901,6 +903,7 @@ id list_item
 id message
 id middle
 id multiply
+id name
 id never
 id none
 id normal
@@ -938,6 +941,7 @@ id search_plate
 id search_src_text
 id search_voice_btn
 id select_dialog_listview
+id settings
 id shortcut
 id showCustom
 id showHome
@@ -1000,6 +1004,7 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
+id toolbar
 id top
 id topPanel
 id unchecked
@@ -1058,6 +1063,7 @@ layout activity_podzial_paragonu
 layout crop_image_activity
 layout crop_image_view
 layout custom_dialog
+layout layout_settings
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big
@@ -1069,6 +1075,7 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu crop_image_menu
+menu menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 string abc_action_bar_home_description

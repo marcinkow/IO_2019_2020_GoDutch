@@ -1,17 +1,24 @@
 package com.GoDutch.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,13 +38,16 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SettingsDialog.ExampleDialogListener {
 
     public List<String> napis;
     public List<String> liczby_nasze;
     Button captureImageBtn, detectTextBtn, tempBut;
     ImageView imageView;
     TextView textView, textView2;
+    EditText editTextName;
+    EditText editTextAccNum;
+    Toolbar toolbar;
     Bitmap productBitmap;
     Bitmap priceBitmap;
     Uri mainPic;
@@ -45,15 +55,19 @@ public class MainActivity extends AppCompatActivity {
     Uri pricePic = null;
     Uri temp = null;
     int helper = 0;
+    String accountNumber, myName;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    static MainActivity INSTANCE;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        INSTANCE = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         captureImageBtn = findViewById(R.id.capture_image);
         detectTextBtn = findViewById(R.id.detect_text_image);
@@ -61,6 +75,16 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.text_display);
         textView2 = findViewById(R.id.text_display2);
         tempBut = findViewById(R.id.button);
+        toolbar = findViewById(R.id.toolbar);
+        editTextName = findViewById(R.id.name);
+        editTextAccNum = findViewById(R.id.accNumber);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPreferences.edit();
+
+        setSupportActionBar(toolbar);
+
+        checkSharedPref();
 
         tempBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                //Toast.makeText(getBaseContext(), "Dokonaj wstępnego przycięcia zdjęcia!", Toast.LENGTH_LONG).show(); -- nie bangla
                 dispatchTakePictureIntent();
                 textView.setText("");
                 textView2.setText("");
@@ -89,6 +112,56 @@ public class MainActivity extends AppCompatActivity {
                 detectTextFromImage();
             }
         });
+    }
+
+    private void checkSharedPref()
+    {
+        String nameSaved = sharedPreferences.getString(myName, "");
+        String accNumSaved = sharedPreferences.getString(accountNumber, "");
+
+        myName = nameSaved;
+        accountNumber = accNumSaved;
+    }
+
+    public static MainActivity getActivityInstance()
+    {
+        return INSTANCE;
+    }
+    public String getMyName()
+    {
+        return this.myName;
+    }
+    public String getMyAccNum()
+    {
+        return this.accountNumber;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.settings)
+        {
+            openSettings();
+        }
+        return true;
+    }
+
+    public void openSettings()
+    {
+        SettingsDialog settingsDialog = new SettingsDialog();
+        settingsDialog.show(getSupportFragmentManager(), "settings");
+    }
+
+    @Override
+    public void apply(String name, String accNum) {
+        myName = name;
+        accountNumber = accNum;
     }
 
     private void openOsobyDoPodzialu()
