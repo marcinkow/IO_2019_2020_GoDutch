@@ -15,15 +15,19 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class OsobyDoPodzialu extends AppCompatActivity {
 
     ListView listView;
     ArrayAdapter<String> adapter;
     ArrayList<String> arrayList;
+    ArrayList<String> napis;
+    ArrayList<String> liczby_nasze;
     EditText editText;
     String tempCH;
     Button btnAdd, btnForward;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,9 @@ public class OsobyDoPodzialu extends AppCompatActivity {
         arrayList = new ArrayList<>(Arrays.asList(osoby));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
+
+        napis = getIntent().getStringArrayListExtra("napis");
+        liczby_nasze = getIntent().getStringArrayListExtra("liczby_nasze");
 
 
 
@@ -79,6 +86,8 @@ public class OsobyDoPodzialu extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(OsobyDoPodzialu.this, PodzialParagonu.class);
                 intent.putExtra("arrayList", arrayList);
+                intent.putExtra("napis",napis);
+                intent.putExtra("liczby_nasze",liczby_nasze);
                 startActivity(intent);
             }
         });

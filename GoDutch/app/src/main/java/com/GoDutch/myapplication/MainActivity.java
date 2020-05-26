@@ -33,9 +33,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public List<String> napis;
-    public List<String> liczby_nasze;
-    Button captureImageBtn, detectTextBtn, tempBut;
+    public ArrayList<String> napis;
+    public ArrayList<String> liczby_nasze;
+    Button captureImageBtn, detectTextBtn, tempBut, podzialOsobBtn;
     ImageView imageView;
     TextView textView, textView2;
     Bitmap productBitmap;
@@ -61,13 +61,21 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.text_display);
         textView2 = findViewById(R.id.text_display2);
         tempBut = findViewById(R.id.button);
+        podzialOsobBtn = findViewById(R.id.podzial_osob);
 
         tempBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cropProduct();
                 cropPrice();
-                //openOsobyDoPodzialu();
+            }
+        });
+
+        podzialOsobBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                openOsobyDoPodzialu();
             }
         });
 
@@ -89,12 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 detectTextFromImage();
             }
         });
-    }
-
-    private void openOsobyDoPodzialu()
-    {
-        Intent intent = new Intent(this, OsobyDoPodzialu.class);
-        startActivity(intent);
     }
 
     private void dispatchTakePictureIntent()
@@ -225,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
         textView.setText(null);
         textView.setMovementMethod(new ScrollingMovementMethod());
-        napis = new ArrayList<>();
+        napis = new ArrayList<String>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
@@ -249,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayTextFromImage2(FirebaseVisionText firebaseVisionText) {
         textView2.setText(null);
         textView2.setMovementMethod(new ScrollingMovementMethod());
-        liczby_nasze = new ArrayList<>();
+        liczby_nasze = new ArrayList<String>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
@@ -325,6 +327,14 @@ public class MainActivity extends AppCompatActivity {
             textView2.append(wynik+"\n");
             liczby_nasze.add(wynik);
         }
+    }
+
+    private void openOsobyDoPodzialu()
+    {
+        Intent intent = new Intent(this, OsobyDoPodzialu.class);
+        intent.putExtra("napis",napis);
+        intent.putExtra("liczby_nasze",liczby_nasze);
+        startActivity(intent);
     }
 
 }
