@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/capture_image"
-        android:text="Podziel paragon!"
+        android:text="Pokaz wyniki"
         android:textAllCaps="false"
         />
 
@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/detect_text_image"
-        android:text="Temp"
+        android:text="Podziel"
         android:textAllCaps="false"
         />
 

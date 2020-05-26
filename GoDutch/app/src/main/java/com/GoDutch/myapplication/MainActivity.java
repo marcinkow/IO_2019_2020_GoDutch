@@ -27,9 +27,14 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    public List<String> napis;
+    public List<String> liczby_nasze;
     Button captureImageBtn, detectTextBtn, tempBut;
     ImageView imageView;
     TextView textView, textView2;
@@ -48,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         captureImageBtn = findViewById(R.id.capture_image);
         detectTextBtn = findViewById(R.id.detect_text_image);
         imageView = findViewById(R.id.image_view);
         textView = findViewById(R.id.text_display);
         textView2 = findViewById(R.id.text_display2);
-
         tempBut = findViewById(R.id.button);
 
         tempBut.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(getBaseContext(), "Dokonaj wstępnego przycięcia zdjęcia!", Toast.LENGTH_LONG).show(); -- nie bangla
                 dispatchTakePictureIntent();
                 textView.setText("");
+                textView2.setText("");
             }
         });
 
@@ -120,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
@@ -149,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     temp = result.getUri();
                     pricePic = temp;
+                    helper = 0;
                     try {
                         priceBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), pricePic);
                     } catch (IOException e) {
@@ -196,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onSuccess(FirebaseVisionText firebaseVisionText2) {
                                 // Task completed successfully
                                 displayTextFromImage2(firebaseVisionText2);
+
                             }
                         })
                         .addOnFailureListener(
@@ -210,81 +220,112 @@ public class MainActivity extends AppCompatActivity {
                                 });
     }
 
-//    private void displayTextFromImage(FirebaseVisionText firebaseVisionText)
-//    {
-//        List<FirebaseVisionText.TextBlock> blockList = firebaseVisionText.getTextBlocks();
-//        if(blockList.size() == 0)
-//        {
-//            Toast.makeText(this, "No text found!", Toast.LENGTH_SHORT).show();
-//        }
-//        else
-//        {
-//            int ile=0;
-//            String [] tekst;
-//            for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks())
-//            {
-//                tekst[ile]=block.getText();
-////                String text = block.getText();
-//                ++ile;
-////                textView.setText(text);
-//                textView.setText(tekst[ile]);
-////                textView.setText("1");
-//                System.out.println(ile);
-//            }
-//
-//        }
-//
-//    }
 
+    //napis
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
         textView.setText(null);
         textView.setMovementMethod(new ScrollingMovementMethod());
-
+        napis = new ArrayList<>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
         }
+
         for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-//            textView.append(block.getText());
-
-
-
-            //każda linia
-//
 			for (FirebaseVisionText.Line line: block.getLines()) {
-//				for (FirebaseVisionText.Element element: line.getElements()) { // z tym kazde pojedyncze słowo 
-//                    textView.append(element.getText() + "\n");
-                    textView.append(line.getText() + "\n");
-//                }
-			}
+			    if(!line.getText().toUpperCase().contains("RABAT") )
+			    {
+                    textView.append(line.getText() + "\n ");
+                    System.out.print(line.getText());
+                    napis.add(line.getText());
 
+                }
+            }
         }
     }
 
+
+    //kwota
     private void displayTextFromImage2(FirebaseVisionText firebaseVisionText) {
         textView2.setText(null);
         textView2.setMovementMethod(new ScrollingMovementMethod());
-
+        liczby_nasze = new ArrayList<>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
         }
+
+        String temp;
+        String tmp;
+        String tempo;
+        String wynik;
+        Boolean czy_przekroczono=false;
+        Integer ilosc_kwot=0;
+        double tmpI1,tmpI2,wynikIntow;
+        List<String> temp_liczbowy = new ArrayList<>();
+
+
         for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-//            textView.append(block.getText());
-
-
-
-            //każda linia
-//
-            for (FirebaseVisionText.Line line: block.getLines()) {
-//				for (FirebaseVisionText.Element element: line.getElements()) { // z tym kazde pojedyncze słowo
-//                    textView.append(element.getText() + "\n");
-                textView2.append(line.getText() + "\n");
-//                }
+            for (FirebaseVisionText.Line line : block.getLines()) {
+//                textView2.append( line.getText() + "\n");
+                temp_liczbowy.add(line.getText());
+                ilosc_kwot++;
             }
+        }
 
+        for(int i=0;i<ilosc_kwot-1;i++)
+        {
+            wynik=temp_liczbowy.get(i);
+            temp=temp_liczbowy.get(i+1);
+            tmp=temp;
+            tmp=tmp.replaceAll("[^\\.0123456789,-]","");
+
+            if(temp.contains("-"))
+            {
+                if (!tmp.equals(temp)) // mamy do czynienia z lidem
+                {
+                    wynik=wynik.replaceAll("[^\\.0123456789,-]", "");
+
+                    tmpI1=Double.parseDouble( wynik.replace(",",".") ); //zamiana przecinka na kropke
+                    tmpI2=Double.parseDouble( tmp.replace(",",".") );
+                    wynikIntow=Math.round(tmpI1*100)+Math.round(tmpI2*100 ); //zaokrągalnie doubla
+                    tempo=String.valueOf(wynikIntow/100);
+                    tempo=tempo.replace(".",",");//zamiana kropki na przecienek
+
+                    textView2.append( tempo + "\n");
+                    liczby_nasze.add(tempo);
+                    i++;
+
+                }
+                else // biedronka
+                {
+                    wynik=temp_liczbowy.get(i+2);
+                    wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
+                    textView2.append(wynik+"\n");
+                    liczby_nasze.add(wynik);
+                    i=i+2;
+                    if(i+1>=ilosc_kwot){
+                        czy_przekroczono=true;
+                    }
+                }
+            }
+            else // jezeli nie ma - to wypsiuje normalnie
+            {
+                wynik = wynik.replaceAll("[^\\.0123456789,-]", ""); // wyrzucenie jakichkolwiek liter
+//                wynik = wynik.substring(0,wynik.length()-1); // usunięcie ostatniego znaku z obliczenia
+                textView2.append(wynik+"\n");
+                liczby_nasze.add(wynik);
+
+            }
+        }
+        if(!czy_przekroczono)
+        {
+            wynik=temp_liczbowy.get(ilosc_kwot-1);
+            wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
+            textView2.append(wynik+"\n");
+            liczby_nasze.add(wynik);
         }
     }
 
-
 }
+
