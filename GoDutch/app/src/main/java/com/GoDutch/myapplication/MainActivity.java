@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
 
     public ArrayList<String> napis;
     public ArrayList<String> liczby_nasze;
-    Button captureImageBtn, detectTextBtn, podzielBut, podzialOsobBtn;
+    Button captureImageBtn, detectTextBtn, podzielBut /*podzialOsobBtn*/;
     ImageView imageView;
 //    TextView textView, textView2;
     EditText editTextName;
@@ -84,7 +84,9 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         toolbar = findViewById(R.id.toolbar);
         editTextName = findViewById(R.id.name);
         editTextAccNum = findViewById(R.id.accNumber);
-        podzialOsobBtn = findViewById(R.id.podzial_osob);
+//        podzialOsobBtn = findViewById(R.id.podzial_osob);
+
+        podzielBut.setVisibility(View.GONE);
 
         setSupportActionBar(toolbar);
 
@@ -230,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                     mainPic = temp;
                     imageView.setImageURI(mainPic);
                     helper = 1;
+                    podzielBut.setVisibility(View.VISIBLE);
+                    captureImageBtn.setVisibility(View.GONE);
                 }
                 else if (helper == 1) // jesli nie ma wycietych produktow
                 {

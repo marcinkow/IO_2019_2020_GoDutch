@@ -82,15 +82,17 @@
         android:layout_alignParentBottom="true"
         android:text="Wybierz lub zrób zdjęcie!"
         android:textAllCaps="false"
+        android:visibility="visible"
         />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/capture_image"
+        android:layout_alignParentBottom="true"
         android:text="Podziel"
         android:textAllCaps="false"
+        android:visibility="visible"
         />
 
 </RelativeLayout>
