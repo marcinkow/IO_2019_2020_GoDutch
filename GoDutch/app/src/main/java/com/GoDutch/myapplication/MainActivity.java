@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -56,10 +57,17 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
     Uri temp = null;
     int helper = 0;
     String accountNumber, myName;
+
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT_NAME = "name";
+    public static final String TEXT_ACC = "accNum";
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
+    @SuppressLint("StaticFieldLeak")
     static MainActivity INSTANCE;
 
 
@@ -79,12 +87,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         editTextName = findViewById(R.id.name);
         editTextAccNum = findViewById(R.id.accNumber);
 
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = sharedPreferences.edit();
-
         setSupportActionBar(toolbar);
-
-        checkSharedPref();
 
         tempBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,15 +115,8 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                 detectTextFromImage();
             }
         });
-    }
 
-    private void checkSharedPref()
-    {
-        String nameSaved = sharedPreferences.getString(myName, "");
-        String accNumSaved = sharedPreferences.getString(accountNumber, "");
-
-        myName = nameSaved;
-        accountNumber = accNumSaved;
+        loadData();
     }
 
     public static MainActivity getActivityInstance()
@@ -147,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         int id = item.getItemId();
         if (id == R.id.settings)
         {
+            loadData();
             openSettings();
         }
         return true;
@@ -162,6 +159,23 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
     public void apply(String name, String accNum) {
         myName = name;
         accountNumber = accNum;
+        saveData(name, accNum);
+    }
+
+    private void saveData(String name, String accNum) {
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        editor.putString(TEXT_NAME, name);
+        editor.putString(TEXT_ACC, accNum);
+        editor.apply();
+        Toast.makeText(this, "Zapisano!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void loadData(){
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        myName = sharedPreferences.getString(TEXT_NAME, "");
+        accountNumber = sharedPreferences.getString(TEXT_ACC, "");
     }
 
     private void openOsobyDoPodzialu()
