@@ -865,7 +865,6 @@ id customPanel
 id dark
 id decor_content_parent
 id default_activity_button
-id detect_text_image
 id dialog_button
 id dimensions
 id direct
@@ -999,8 +998,6 @@ id textViewProd5
 id textViewProd6
 id textViewProd7
 id textViewProd8
-id text_display
-id text_display2
 id time
 id title
 id titleDividerNoCustom

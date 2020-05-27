@@ -21,11 +21,11 @@
     <ImageView
         android:id="@+id/image_view"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="500dp"
         android:layout_below="@id/toolbar"
         />
 
-    <TextView
+    <!--<TextView
         android:id="@+id/text_display"
         android:layout_width="wrap_content"
         android:layout_height="185dp"
@@ -51,29 +51,29 @@
         android:maxLines="40"
         android:scrollbars="vertical"
         android:text="Detected text"
-        android:textSize="20dp" />
+        android:textSize="20dp" />-->
 
-    <Button
+   <!-- <Button
         android:id="@+id/detect_text_image"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/capture_image"
         android:layout_marginBottom="0dp"
         android:text="Pokaz wyniki"
-        android:textAllCaps="false" />
+        android:textAllCaps="false" />-->
 
+<!--
     <Button
         android:id="@+id/podzial_osob"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/capture_image"
+        android:layout_above="@+id/button"
         android:layout_marginStart="7dp"
         android:layout_marginLeft="7dp"
         android:layout_marginBottom="0dp"
-        android:layout_toEndOf="@+id/detect_text_image"
-        android:layout_toRightOf="@+id/detect_text_image"
         android:text="Podział osób"
         android:textAllCaps="false" />
+-->
 
     <Button
         android:id="@+id/capture_image"
@@ -88,7 +88,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/detect_text_image"
+        android:layout_above="@id/capture_image"
         android:text="Podziel"
         android:textAllCaps="false"
         />
