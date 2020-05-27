@@ -1,17 +1,25 @@
 package com.GoDutch.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,13 +39,16 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SettingsDialog.ExampleDialogListener {
 
     public ArrayList<String> napis;
     public ArrayList<String> liczby_nasze;
     Button captureImageBtn, detectTextBtn, tempBut, podzialOsobBtn;
     ImageView imageView;
     TextView textView, textView2;
+    EditText editTextName;
+    EditText editTextAccNum;
+    Toolbar toolbar;
     Bitmap productBitmap;
     Bitmap priceBitmap;
     Uri mainPic;
@@ -45,15 +56,26 @@ public class MainActivity extends AppCompatActivity {
     Uri pricePic = null;
     Uri temp = null;
     int helper = 0;
+    String accountNumber, myName;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT_NAME = "name";
+    public static final String TEXT_ACC = "accNum";
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    @SuppressLint("StaticFieldLeak")
+    static MainActivity INSTANCE;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        INSTANCE = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         captureImageBtn = findViewById(R.id.capture_image);
         detectTextBtn = findViewById(R.id.detect_text_image);
@@ -61,7 +83,12 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.text_display);
         textView2 = findViewById(R.id.text_display2);
         tempBut = findViewById(R.id.button);
+        toolbar = findViewById(R.id.toolbar);
+        editTextName = findViewById(R.id.name);
+        editTextAccNum = findViewById(R.id.accNumber);
         podzialOsobBtn = findViewById(R.id.podzial_osob);
+
+        setSupportActionBar(toolbar);
 
         tempBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                //Toast.makeText(getBaseContext(), "Dokonaj wstępnego przycięcia zdjęcia!", Toast.LENGTH_LONG).show(); -- nie bangla
                 dispatchTakePictureIntent();
                 textView.setText("");
                 textView2.setText("");
@@ -97,6 +123,67 @@ public class MainActivity extends AppCompatActivity {
                 detectTextFromImage();
             }
         });
+
+        loadData();
+    }
+
+    public static MainActivity getActivityInstance()
+    {
+        return INSTANCE;
+    }
+    public String getMyName()
+    {
+        return this.myName;
+    }
+    public String getMyAccNum()
+    {
+        return this.accountNumber;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.settings)
+        {
+            loadData();
+            openSettings();
+        }
+        return true;
+    }
+
+    public void openSettings()
+    {
+        SettingsDialog settingsDialog = new SettingsDialog();
+        settingsDialog.show(getSupportFragmentManager(), "settings");
+    }
+
+    @Override
+    public void apply(String name, String accNum) {
+        myName = name;
+        accountNumber = accNum;
+        saveData(name, accNum);
+    }
+
+    private void saveData(String name, String accNum) {
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        editor.putString(TEXT_NAME, name);
+        editor.putString(TEXT_ACC, accNum);
+        editor.apply();
+        Toast.makeText(this, "Zapisano!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void loadData(){
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        myName = sharedPreferences.getString(TEXT_NAME, "");
+        accountNumber = sharedPreferences.getString(TEXT_ACC, "");
     }
 
     private void dispatchTakePictureIntent()

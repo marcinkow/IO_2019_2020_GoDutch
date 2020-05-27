@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+#Wed May 27 14:24:41 CEST 2020
+base.0=D\:\\Dokumenty\\.MojeDokumenty\\Uczelnia\\Go Dutch\\IO_2019_2020_GoDutch\\GoDutch\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
+=======
 #Tue May 26 16:19:50 CEST 2020
 base.0=C\:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
+>>>>>>> master
 path.0=classes.dex
 renamed.0=classes.dex

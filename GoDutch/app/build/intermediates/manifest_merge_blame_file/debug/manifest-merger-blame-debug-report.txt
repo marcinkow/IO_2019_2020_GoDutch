@@ -6,6 +6,206 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
+<<<<<<< HEAD
+8-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml
+10
+11    <uses-feature
+11-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:5:5-7:35
+12        android:name="android.hardware.camera"
+12-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:6:9-47
+13        android:required="true" />
+13-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:7:9-32
+14
+15    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+15-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:9:5-80
+15-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:9:22-77
+16    <uses-permission android:name="android.permission.INTERNET" />
+16-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:22:5-67
+16-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:22:22-64
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:23:5-79
+17-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:23:22-76
+18    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+18-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:24:5-68
+18-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:24:22-65
+19    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+19-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:26:5-82
+19-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:26:22-79
+20    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+20-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:26:5-110
+20-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:26:22-107
+21
+22    <application
+22-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:11:5-35:19
+23        android:allowBackup="true"
+23-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:12:9-35
+24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+24-->[androidx.core:core:1.1.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\bcfc0b80df78591183083cc148e1cf2c\core-1.1.0\AndroidManifest.xml:24:18-86
+25        android:debuggable="true"
+26        android:icon="@mipmap/ic_launcher"
+26-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:13:9-43
+27        android:label="@string/app_name"
+27-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:14:9-41
+28        android:roundIcon="@mipmap/ic_launcher_round"
+28-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:15:9-54
+29        android:supportsRtl="true"
+29-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:16:9-35
+30        android:theme="@style/AppTheme" >
+30-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:17:9-40
+31        <activity android:name="com.GoDutch.myapplication.Koncowy" />
+31-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:18:9-54
+31-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:18:19-42
+32        <activity android:name="com.GoDutch.myapplication.OsobyDoPodzialu" />
+32-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:19:9-53
+32-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:19:19-50
+33        <activity android:name="com.GoDutch.myapplication.PodzialParagonu" />
+33-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:20:9-53
+33-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:20:19-50
+34        <activity android:name="com.GoDutch.myapplication.MainActivity" >
+34-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:21:9-31:20
+34-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:21:19-47
+35            <meta-data
+35-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:22:13-24:39
+36                android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+36-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:23:17-74
+37                android:value="ocr" />
+37-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:24:17-36
+38
+39            <intent-filter>
+39-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:26:13-30:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:27:17-69
+40-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:27:25-66
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:29:17-77
+42-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:29:27-74
+43            </intent-filter>
+44        </activity>
+45        <activity
+45-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:32:9-34:59
+46            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+46-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:33:13-76
+47            android:theme="@style/Base.Theme.AppCompat" />
+47-->D:\Dokumenty\.MojeDokumenty\Uczelnia\Go Dutch\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml:34:13-56
+48
+49        <service
+49-->[com.google.firebase:firebase-ml-vision:24.0.3] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\0f4565c1c899bffba16c171fd0f3504b\jetified-firebase-ml-vision-24.0.3\AndroidManifest.xml:9:9-15:19
+50            android:name="com.google.firebase.components.ComponentDiscoveryService"
+50-->[com.google.firebase:firebase-ml-vision:24.0.3] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\0f4565c1c899bffba16c171fd0f3504b\jetified-firebase-ml-vision-24.0.3\AndroidManifest.xml:10:13-84
+51            android:directBootAware="true"
+51-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\3deb10f8139ef5717b3d54ada2a19ca4\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+52            android:exported="false" >
+52-->[com.google.firebase:firebase-ml-vision:24.0.3] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\0f4565c1c899bffba16c171fd0f3504b\jetified-firebase-ml-vision-24.0.3\AndroidManifest.xml:11:13-37
+53            <meta-data
+53-->[com.google.firebase:firebase-ml-vision:24.0.3] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\0f4565c1c899bffba16c171fd0f3504b\jetified-firebase-ml-vision-24.0.3\AndroidManifest.xml:12:13-14:85
+54                android:name="com.google.firebase.components:com.google.firebase.ml.vision.VisionRegistrar"
+54-->[com.google.firebase:firebase-ml-vision:24.0.3] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\0f4565c1c899bffba16c171fd0f3504b\jetified-firebase-ml-vision-24.0.3\AndroidManifest.xml:13:17-108
+55                android:value="com.google.firebase.components.ComponentRegistrar" />
+55-->[com.google.firebase:firebase-ml-vision:24.0.3] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\0f4565c1c899bffba16c171fd0f3504b\jetified-firebase-ml-vision-24.0.3\AndroidManifest.xml:14:17-82
+56            <meta-data
+56-->[com.google.firebase:firebase-ml-common:22.1.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\d4901993c4d7555e26b4c125ad06b296\jetified-firebase-ml-common-22.1.1\AndroidManifest.xml:11:13-13:85
+57                android:name="com.google.firebase.components:com.google.firebase.ml.common.CommonComponentRegistrar"
+57-->[com.google.firebase:firebase-ml-common:22.1.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\d4901993c4d7555e26b4c125ad06b296\jetified-firebase-ml-common-22.1.1\AndroidManifest.xml:12:17-117
+58                android:value="com.google.firebase.components.ComponentRegistrar" />
+58-->[com.google.firebase:firebase-ml-common:22.1.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\d4901993c4d7555e26b4c125ad06b296\jetified-firebase-ml-common-22.1.1\AndroidManifest.xml:13:17-82
+59            <meta-data
+59-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:30:13-32:85
+60                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+60-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:31:17-139
+61                android:value="com.google.firebase.components.ComponentRegistrar" />
+61-->[com.google.android.gms:play-services-measurement-api:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\7a31a249c23b671f80a71083143f7823\jetified-play-services-measurement-api-17.4.1\AndroidManifest.xml:32:17-82
+62            <meta-data
+62-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:32:13-34:85
+63                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+63-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:33:17-96
+64                android:value="com.google.firebase.components.ComponentRegistrar" />
+64-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:34:17-82
+65            <meta-data
+65-->[com.google.firebase:firebase-installations:16.2.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\80b5e92b70a89d4f419c7604b16b139f\jetified-firebase-installations-16.2.1\AndroidManifest.xml:17:13-19:85
+66                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+66-->[com.google.firebase:firebase-installations:16.2.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\80b5e92b70a89d4f419c7604b16b139f\jetified-firebase-installations-16.2.1\AndroidManifest.xml:18:17-127
+67                android:value="com.google.firebase.components.ComponentRegistrar" />
+67-->[com.google.firebase:firebase-installations:16.2.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\80b5e92b70a89d4f419c7604b16b139f\jetified-firebase-installations-16.2.1\AndroidManifest.xml:19:17-82
+68        </service>
+69
+70        <receiver
+70-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:37:9-44:20
+71            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+71-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:38:13-78
+72            android:exported="true"
+72-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:39:13-36
+73            android:permission="com.google.android.c2dm.permission.SEND" >
+73-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:40:13-73
+74            <intent-filter>
+74-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:41:13-43:29
+75                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+75-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:42:17-81
+75-->[com.google.firebase:firebase-iid:20.1.5] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\8183980bc8e77d4fe843a9e6d0f0d6a0\jetified-firebase-iid-20.1.5\AndroidManifest.xml:42:25-78
+76            </intent-filter>
+77        </receiver>
+78
+79        <activity
+79-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\2be5ef2959ea5355d833f1cf7554bfda\jetified-play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+80            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+80-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\2be5ef2959ea5355d833f1cf7554bfda\jetified-play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+81            android:exported="false"
+81-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\2be5ef2959ea5355d833f1cf7554bfda\jetified-play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+82            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+82-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\2be5ef2959ea5355d833f1cf7554bfda\jetified-play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+83
+84        <receiver
+84-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:29:9-33:20
+85            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+85-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:30:13-85
+86            android:enabled="true"
+86-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:31:13-35
+87            android:exported="false" >
+87-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:32:13-37
+88        </receiver>
+89
+90        <service
+90-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:35:9-38:40
+91            android:name="com.google.android.gms.measurement.AppMeasurementService"
+91-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:36:13-84
+92            android:enabled="true"
+92-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:37:13-35
+93            android:exported="false" />
+93-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:38:13-37
+94        <service
+94-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:39:9-43:72
+95            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+95-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:40:13-87
+96            android:enabled="true"
+96-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:41:13-35
+97            android:exported="false"
+97-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:42:13-37
+98            android:permission="android.permission.BIND_JOB_SERVICE" />
+98-->[com.google.android.gms:play-services-measurement:17.4.1] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\93344a54810d6249d792bcad51b8c857\jetified-play-services-measurement-17.4.1\AndroidManifest.xml:43:13-69
+99
+100        <provider
+100-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\3deb10f8139ef5717b3d54ada2a19ca4\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+101            android:name="com.google.firebase.provider.FirebaseInitProvider"
+101-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\3deb10f8139ef5717b3d54ada2a19ca4\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+102            android:authorities="com.GoDutch.myapplication.firebaseinitprovider"
+102-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\3deb10f8139ef5717b3d54ada2a19ca4\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+103            android:exported="false"
+103-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\3deb10f8139ef5717b3d54ada2a19ca4\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+104            android:initOrder="100" />
+104-->[com.google.firebase:firebase-common:19.3.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\3deb10f8139ef5717b3d54ada2a19ca4\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+105
+106        <meta-data
+106-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\164bb505b81f338baa0db13edd04c1d1\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+107            android:name="com.google.android.gms.version"
+107-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\164bb505b81f338baa0db13edd04c1d1\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+108            android:value="@integer/google_play_services_version" />
+108-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\Jedrek\.gradle\caches\transforms-2\files-2.1\164bb505b81f338baa0db13edd04c1d1\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+109    </application>
+110
+111</manifest>
+=======
 8-->C:\Users\szymo\Desktop\Projekt\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
 9-->C:\Users\szymo\Desktop\Projekt\IO_2019_2020_GoDutch\GoDutch\app\src\main\AndroidManifest.xml
@@ -205,3 +405,4 @@
 110    </application>
 111
 112</manifest>
+>>>>>>> master
