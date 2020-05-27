@@ -186,12 +186,6 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         accountNumber = sharedPreferences.getString(TEXT_ACC, "");
     }
 
-    private void openOsobyDoPodzialu()
-    {
-        Intent intent = new Intent(this, OsobyDoPodzialu.class);
-        startActivity(intent);
-    }
-
     private void dispatchTakePictureIntent()
     {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
