@@ -55,12 +55,25 @@
 
     <Button
         android:id="@+id/detect_text_image"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/capture_image"
+        android:layout_marginBottom="0dp"
         android:text="Pokaz wyniki"
-        android:textAllCaps="false"
-        />
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/podzial_osob"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/capture_image"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/detect_text_image"
+        android:layout_toRightOf="@+id/detect_text_image"
+        android:text="Podział osób"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/capture_image"

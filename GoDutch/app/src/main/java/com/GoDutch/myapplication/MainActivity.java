@@ -41,9 +41,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SettingsDialog.ExampleDialogListener {
 
-    public List<String> napis;
-    public List<String> liczby_nasze;
-    Button captureImageBtn, detectTextBtn, tempBut;
+    public ArrayList<String> napis;
+    public ArrayList<String> liczby_nasze;
+    Button captureImageBtn, detectTextBtn, tempBut, podzialOsobBtn;
     ImageView imageView;
     TextView textView, textView2;
     EditText editTextName;
@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         toolbar = findViewById(R.id.toolbar);
         editTextName = findViewById(R.id.name);
         editTextAccNum = findViewById(R.id.accNumber);
+        podzialOsobBtn = findViewById(R.id.podzial_osob);
 
         setSupportActionBar(toolbar);
 
@@ -94,7 +95,14 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
             public void onClick(View v) {
                 cropProduct();
                 cropPrice();
-                //openOsobyDoPodzialu();
+            }
+        });
+
+        podzialOsobBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                openOsobyDoPodzialu();
             }
         });
 
@@ -312,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
         textView.setText(null);
         textView.setMovementMethod(new ScrollingMovementMethod());
-        napis = new ArrayList<>();
+        napis = new ArrayList<String>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
@@ -336,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
     private void displayTextFromImage2(FirebaseVisionText firebaseVisionText) {
         textView2.setText(null);
         textView2.setMovementMethod(new ScrollingMovementMethod());
-        liczby_nasze = new ArrayList<>();
+        liczby_nasze = new ArrayList<String>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
@@ -412,6 +420,14 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
             textView2.append(wynik+"\n");
             liczby_nasze.add(wynik);
         }
+    }
+
+    private void openOsobyDoPodzialu()
+    {
+        Intent intent = new Intent(this, OsobyDoPodzialu.class);
+        intent.putExtra("napis",napis);
+        intent.putExtra("liczby_nasze",liczby_nasze);
+        startActivity(intent);
     }
 
 }
