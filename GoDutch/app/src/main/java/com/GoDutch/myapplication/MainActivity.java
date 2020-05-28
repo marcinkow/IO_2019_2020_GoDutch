@@ -319,24 +319,55 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
 
     //napis
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
-//        textView.setText(null);
-//        textView.setMovementMethod(new ScrollingMovementMethod());
-        napis = new ArrayList<String>();
+        napis = new ArrayList<>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
         }
 
-        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-			for (FirebaseVisionText.Line line: block.getLines()) {
-			    if(!line.getText().toUpperCase().contains("RABAT") )
-			    {
-//                    textView.append(line.getText() + "\n ");
-                    System.out.print(line.getText());
-                    napis.add(line.getText());
+        int licznik=0;
+        int licznik_napisow=1;
+        String temp;
+        List<String> temp_napis = new ArrayList<>();
 
-                }
+        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+            for (FirebaseVisionText.Line line: block.getLines()) {
+                System.out.print(line.getText());
+                temp=line.getText();
+                temp=temp.replace("Ó","O"); // czasem źle czyta ogonki
+                temp=temp.replace("Ą","A");
+                temp=temp.replace("Ę","E");
+                temp=temp.replace("Ń","N");
+                temp=temp.replace("Ć","C");
+                temp=temp.replace("Ź","Z");
+                temp=temp.replace("Ż","Z");
+                temp=temp.replace(",",".");
+                temp=temp.replace(".","");
+                temp_napis.add(temp);
+                licznik++;
             }
+        }
+
+
+        napis.add(temp_napis.get(0));
+        for(int i=1;i<licznik-1;i++)
+        {
+            if(temp_napis.get(i).toUpperCase().contains("RABAT"))
+            {
+                if(temp_napis.get(i-1).contains(temp_napis.get(i+1)))
+                { i++; }
+            }
+            else
+            {
+                napis.add(temp_napis.get(i));
+                licznik_napisow++;
+            }
+        }
+
+        if(!temp_napis.get(licznik-1).toUpperCase().contains("RABAT"))
+        {
+            napis.add(temp_napis.get(licznik-1));
+            licznik_napisow++;
         }
     }
 
@@ -386,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                     tmpI2=Double.parseDouble( tmp.replace(",",".") );
                     wynikIntow=Math.round(tmpI1*100)+Math.round(tmpI2*100 ); //zaokrągalnie doubla
                     tempo=String.valueOf(wynikIntow/100);
-                    tempo=tempo.replace(".",",");//zamiana kropki na przecienek
+
 
 //                    textView2.append( tempo + "\n");
                     liczby_nasze.add(tempo);
@@ -398,6 +429,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                     wynik=temp_liczbowy.get(i+2);
                     wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
 //                    textView2.append(wynik+"\n");
+                    wynik=wynik.replace(",",".");//zamiana kropki na przecienek
                     liczby_nasze.add(wynik);
                     i=i+2;
                     if(i+1>=ilosc_kwot){
@@ -410,6 +442,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                 wynik = wynik.replaceAll("[^\\.0123456789,-]", ""); // wyrzucenie jakichkolwiek liter
 //                wynik = wynik.substring(0,wynik.length()-1); // usunięcie ostatniego znaku z obliczenia
 //                textView2.append(wynik+"\n");
+                wynik=wynik.replace(",",".");//zamiana kropki na przecienek
                 liczby_nasze.add(wynik);
 
             }
@@ -419,6 +452,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
             wynik=temp_liczbowy.get(ilosc_kwot-1);
             wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
 //            textView2.append(wynik+"\n");
+            wynik=wynik.replace(",",".");//zamiana kropki na przecienek
             liczby_nasze.add(wynik);
         }
         openOsobyDoPodzialu();
