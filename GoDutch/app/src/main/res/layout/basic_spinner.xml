@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:gravity="center_vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/row_item_textview"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="3.5dp"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/row_item_textview2"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="3.5dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_toStartOf="@+id/row_item_spinner"
+        android:layout_toLeftOf="@+id/row_item_spinner"
+        android:layout_toEndOf="@+id/row_item_textview"
+        android:layout_toRightOf="@+id/row_item_textview"
+        android:textSize="12sp" />
+
+    <Spinner
+        android:id="@+id/row_item_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:padding="2dp" />
+</RelativeLayout>

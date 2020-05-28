@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         toolbar = findViewById(R.id.toolbar);
         editTextName = findViewById(R.id.name);
         editTextAccNum = findViewById(R.id.accNumber);
+
 //        podzialOsobBtn = findViewById(R.id.podzial_osob);
 
         podzielBut.setVisibility(View.GONE);
