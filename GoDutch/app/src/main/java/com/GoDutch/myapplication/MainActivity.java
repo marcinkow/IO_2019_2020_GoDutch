@@ -1,7 +1,6 @@
 package com.GoDutch.myapplication;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -11,7 +10,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -35,7 +33,6 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
 
     public ArrayList<String> napis;
     public ArrayList<String> liczby_nasze;
-    Button captureImageBtn, detectTextBtn, tempBut, podzialOsobBtn;
+    Button captureImageBtn, detectTextBtn, podzielBut /*podzialOsobBtn*/;
     ImageView imageView;
-    TextView textView, textView2;
+//    TextView textView, textView2;
     EditText editTextName;
     EditText editTextAccNum;
     Toolbar toolbar;
@@ -56,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
     Uri pricePic = null;
     Uri temp = null;
     int helper = 0;
+
     String accountNumber, myName;
 
     SharedPreferences sharedPreferences;
@@ -78,51 +76,55 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         setContentView(R.layout.activity_main);
 
         captureImageBtn = findViewById(R.id.capture_image);
-        detectTextBtn = findViewById(R.id.detect_text_image);
+//        detectTextBtn = findViewById(R.id.detect_text_image);
         imageView = findViewById(R.id.image_view);
-        textView = findViewById(R.id.text_display);
-        textView2 = findViewById(R.id.text_display2);
-        tempBut = findViewById(R.id.button);
+//        textView = findViewById(R.id.text_display);
+//        textView2 = findViewById(R.id.text_display2);
+        podzielBut = findViewById(R.id.button);
         toolbar = findViewById(R.id.toolbar);
         editTextName = findViewById(R.id.name);
         editTextAccNum = findViewById(R.id.accNumber);
-        podzialOsobBtn = findViewById(R.id.podzial_osob);
+
+//        podzialOsobBtn = findViewById(R.id.podzial_osob);
+
+        podzielBut.setVisibility(View.GONE);
 
         setSupportActionBar(toolbar);
-
-        tempBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cropProduct();
-                cropPrice();
-            }
-        });
-
-        podzialOsobBtn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v)
-            {
-                openOsobyDoPodzialu();
-            }
-        });
 
         captureImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 dispatchTakePictureIntent();
-                textView.setText("");
-                textView2.setText("");
+//                textView.setText("");
+//                textView2.setText("");
             }
         });
 
-        detectTextBtn.setOnClickListener(new View.OnClickListener(){
+        podzielBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cropProduct();
+            }
+        });
+
+        /*podzialOsobBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v)
+            {
+                openOsobyDoPodzialu();
+            }
+        });*/
+
+
+
+        /*detectTextBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v)
             {
                 detectTextFromImage();
             }
-        });
+        });*/
 
         loadData();
     }
@@ -203,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         {
             CropImage.activity(mainPic)
                     .start(this);
+            cropPrice();
         }
     }
 
@@ -213,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
             CropImage.activity(mainPic)
                     .start(this);
         }
-    }
+}
 
     @Override
 
@@ -230,6 +233,8 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                     mainPic = temp;
                     imageView.setImageURI(mainPic);
                     helper = 1;
+                    podzielBut.setVisibility(View.VISIBLE);
+                    captureImageBtn.setVisibility(View.GONE);
                 }
                 else if (helper == 1) // jesli nie ma wycietych produktow
                 {
@@ -252,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    detectTextFromImage();
                 }
             }
             else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
@@ -307,37 +313,69 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                                         Log.d("Error: ", e.getMessage());
                                     }
                                 });
+
     }
 
 
     //napis
     private void displayTextFromImage(FirebaseVisionText firebaseVisionText) {
-        textView.setText(null);
-        textView.setMovementMethod(new ScrollingMovementMethod());
-        napis = new ArrayList<String>();
+        napis = new ArrayList<>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
             return;
         }
 
-        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-			for (FirebaseVisionText.Line line: block.getLines()) {
-			    if(!line.getText().toUpperCase().contains("RABAT") )
-			    {
-                    textView.append(line.getText() + "\n ");
-                    System.out.print(line.getText());
-                    napis.add(line.getText());
+        int licznik=0;
+        int licznik_napisow=1;
+        String temp;
+        List<String> temp_napis = new ArrayList<>();
 
-                }
+        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+            for (FirebaseVisionText.Line line: block.getLines()) {
+                System.out.print(line.getText());
+                temp=line.getText();
+                temp=temp.replace("Ó","O"); // czasem źle czyta ogonki
+                temp=temp.replace("Ą","A");
+                temp=temp.replace("Ę","E");
+                temp=temp.replace("Ń","N");
+                temp=temp.replace("Ć","C");
+                temp=temp.replace("Ź","Z");
+                temp=temp.replace("Ż","Z");
+                temp=temp.replace(",",".");
+                temp=temp.replace(".","");
+                temp_napis.add(temp);
+                licznik++;
             }
+        }
+
+
+        napis.add(temp_napis.get(0));
+        for(int i=1;i<licznik-1;i++)
+        {
+            if(temp_napis.get(i).toUpperCase().contains("RABAT"))
+            {
+                if(temp_napis.get(i-1).contains(temp_napis.get(i+1)))
+                { i++; }
+            }
+            else
+            {
+                napis.add(temp_napis.get(i));
+                licznik_napisow++;
+            }
+        }
+
+        if(!temp_napis.get(licznik-1).toUpperCase().contains("RABAT"))
+        {
+            napis.add(temp_napis.get(licznik-1));
+            licznik_napisow++;
         }
     }
 
 
     //kwota
     private void displayTextFromImage2(FirebaseVisionText firebaseVisionText) {
-        textView2.setText(null);
-        textView2.setMovementMethod(new ScrollingMovementMethod());
+//        textView2.setText(null);
+//        textView2.setMovementMethod(new ScrollingMovementMethod());
         liczby_nasze = new ArrayList<String>();
         if (firebaseVisionText.getTextBlocks().size() == 0) {
             Toast.makeText(this, "No Text Found", Toast.LENGTH_LONG).show();
@@ -379,9 +417,9 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                     tmpI2=Double.parseDouble( tmp.replace(",",".") );
                     wynikIntow=Math.round(tmpI1*100)+Math.round(tmpI2*100 ); //zaokrągalnie doubla
                     tempo=String.valueOf(wynikIntow/100);
-                    tempo=tempo.replace(".",",");//zamiana kropki na przecienek
 
-                    textView2.append( tempo + "\n");
+
+//                    textView2.append( tempo + "\n");
                     liczby_nasze.add(tempo);
                     i++;
 
@@ -390,7 +428,8 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
                 {
                     wynik=temp_liczbowy.get(i+2);
                     wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
-                    textView2.append(wynik+"\n");
+//                    textView2.append(wynik+"\n");
+                    wynik=wynik.replace(",",".");//zamiana kropki na przecienek
                     liczby_nasze.add(wynik);
                     i=i+2;
                     if(i+1>=ilosc_kwot){
@@ -402,7 +441,8 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
             {
                 wynik = wynik.replaceAll("[^\\.0123456789,-]", ""); // wyrzucenie jakichkolwiek liter
 //                wynik = wynik.substring(0,wynik.length()-1); // usunięcie ostatniego znaku z obliczenia
-                textView2.append(wynik+"\n");
+//                textView2.append(wynik+"\n");
+                wynik=wynik.replace(",",".");//zamiana kropki na przecienek
                 liczby_nasze.add(wynik);
 
             }
@@ -411,9 +451,11 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         {
             wynik=temp_liczbowy.get(ilosc_kwot-1);
             wynik = wynik.replaceAll("[^\\.0123456789,-]", "");
-            textView2.append(wynik+"\n");
+//            textView2.append(wynik+"\n");
+            wynik=wynik.replace(",",".");//zamiana kropki na przecienek
             liczby_nasze.add(wynik);
         }
+        openOsobyDoPodzialu();
     }
 
     private void openOsobyDoPodzialu()
