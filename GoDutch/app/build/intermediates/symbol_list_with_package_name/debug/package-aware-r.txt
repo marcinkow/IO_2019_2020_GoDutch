@@ -753,6 +753,7 @@ drawable ic_help
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_settings_black_24dp
+drawable ic_undo
 drawable notification_action_background
 drawable notification_bg
 drawable notification_bg_low
@@ -988,6 +989,7 @@ id toolbar
 id top
 id topPanel
 id unchecked
+id undo
 id uniform
 id up
 id useLogo
@@ -1041,12 +1043,12 @@ layout activity_koncowy
 layout activity_main
 layout activity_osoby_do_podzialu
 layout activity_podzial_paragonu
-layout basic_spinner
 layout crop_image_activity
 layout crop_image_view
 layout custom_dialog
 layout layout_help
 layout layout_settings
+layout list_view_spinner
 layout notification_action
 layout notification_action_tombstone
 layout notification_template_custom_big
