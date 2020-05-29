@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         editTextName = findViewById(R.id.name);
         editTextAccNum = findViewById(R.id.accNumber);
 
+
 //        podzialOsobBtn = findViewById(R.id.podzial_osob);
 
         podzielBut.setVisibility(View.GONE);
@@ -159,6 +161,13 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         else if(id == R.id.help)
         {
             openHelp();
+        }
+        else if(id == R.id.undo)
+        {
+            imageView.setImageURI(null);
+            helper = 0;
+            podzielBut.setVisibility(View.GONE);
+            captureImageBtn.setVisibility(View.VISIBLE);
         }
         return true;
     }

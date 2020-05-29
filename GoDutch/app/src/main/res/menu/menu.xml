@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:title="undo"
+        android:id="@+id/undo"
+        app:showAsAction="always"
+        android:visible="true"
+        android:icon="@drawable/ic_undo"
+        />
+
+    <item
         android:title="help"
         android:id="@+id/help"
         app:showAsAction="always"
