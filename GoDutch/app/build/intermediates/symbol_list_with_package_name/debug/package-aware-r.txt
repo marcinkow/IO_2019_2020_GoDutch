@@ -749,6 +749,7 @@ drawable crop_image_menu_rotate_left
 drawable crop_image_menu_rotate_right
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_help
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_settings_black_24dp
@@ -884,6 +885,7 @@ id glide_custom_view_target_tag
 id gone
 id group_divider
 id groups
+id help
 id home
 id homeAsUp
 id icon
@@ -989,6 +991,7 @@ id unchecked
 id uniform
 id up
 id useLogo
+id viewPager
 id wide
 id withText
 id wrap
@@ -1042,6 +1045,7 @@ layout basic_spinner
 layout crop_image_activity
 layout crop_image_view
 layout custom_dialog
+layout layout_help
 layout layout_settings
 layout notification_action
 layout notification_action_tombstone
