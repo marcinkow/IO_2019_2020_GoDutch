@@ -156,7 +156,16 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
             loadData();
             openSettings();
         }
+        else if(id == R.id.help)
+        {
+            openHelp();
+        }
         return true;
+    }
+
+    private void openHelp() {
+        HelpDialog helpDialog = new HelpDialog();
+        helpDialog.show(getSupportFragmentManager(), "help");
     }
 
     public void openSettings()
@@ -463,6 +472,8 @@ public class MainActivity extends AppCompatActivity implements SettingsDialog.Ex
         Intent intent = new Intent(this, OsobyDoPodzialu.class);
         intent.putExtra("napis",napis);
         intent.putExtra("liczby_nasze",liczby_nasze);
+        intent.putExtra("ustawienia_imie", myName);
+        intent.putExtra("ustawienia_numer", accountNumber);
         startActivity(intent);
     }
 
