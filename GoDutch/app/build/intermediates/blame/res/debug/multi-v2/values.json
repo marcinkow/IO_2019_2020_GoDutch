@@ -1,8 +1,42 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\szymo\\Desktop\\testy\\GoDutch\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,199,307,389,493,602,722,819",
+                        "endColumns": "143,107,81,103,108,119,96,73",
+                        "endOffsets": "194,302,384,488,597,717,814,888"
+                    },
+                    "to": {
+                        "startLines": "451,452,453,454,455,456,457,459",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "28346,28490,28598,28680,28784,28893,29013,29184",
+                        "endColumns": "143,107,81,103,108,119,96,73",
+                        "endOffsets": "28485,28593,28675,28779,28888,29008,29105,29253"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\src\\main\\res\\values\\ic_launcher_background.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "56",
+                        "endOffsets": "107"
+                    },
+                    "to": {
+                        "startLines": "174",
+                        "startColumns": "4",
+                        "startOffsets": "9195",
+                        "endColumns": "56",
+                        "endOffsets": "9247"
+                    }
+                },
                 {
                     "source": "C:\\Users\\szymo\\.gradle\\caches\\transforms-2\\files-2.1\\bcfc0b80df78591183083cc148e1cf2c\\core-1.1.0\\res\\values\\values.xml",
                     "from": {
@@ -23,37 +57,39 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\szymo\\Desktop\\testy\\GoDutch\\app\\src\\main\\res\\values\\ic_launcher_background.xml",
+                    "source": "C:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "2",
+                        "startLines": "1",
                         "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "56",
-                        "endOffsets": "107"
+                        "startOffsets": "17",
+                        "endColumns": "44",
+                        "endOffsets": "57"
                     },
                     "to": {
-                        "startLines": "174",
+                        "startLines": "424",
                         "startColumns": "4",
-                        "startOffsets": "9195",
-                        "endColumns": "56",
-                        "endOffsets": "9247"
+                        "startOffsets": "25400",
+                        "endColumns": "44",
+                        "endOffsets": "25440"
                     }
                 },
                 {
-                    "source": "C:\\Users\\szymo\\Desktop\\testy\\GoDutch\\app\\src\\main\\res\\values\\colors.xml",
+                    "source": "C:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "4,2,3",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "157,57,105",
-                        "endColumns": "45,46,50",
-                        "endOffsets": "198,99,151"
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endLines": "8",
+                        "endColumns": "12",
+                        "endOffsets": "374"
                     },
                     "to": {
-                        "startLines": "153,154,155",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "7699,7745,7792",
-                        "endColumns": "45,46,50",
-                        "endOffsets": "7740,7787,7838"
+                        "startLines": "467",
+                        "startColumns": "4",
+                        "startOffsets": "29824",
+                        "endLines": "472",
+                        "endColumns": "12",
+                        "endOffsets": "30136"
                     }
                 },
                 {
@@ -169,25 +205,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\szymo\\Desktop\\testy\\GoDutch\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "57",
-                        "endLines": "8",
-                        "endColumns": "12",
-                        "endOffsets": "374"
-                    },
-                    "to": {
-                        "startLines": "467",
-                        "startColumns": "4",
-                        "startOffsets": "29824",
-                        "endLines": "472",
-                        "endColumns": "12",
-                        "endOffsets": "30136"
-                    }
-                },
-                {
                     "source": "C:\\Users\\szymo\\.gradle\\caches\\transforms-2\\files-2.1\\164bb505b81f338baa0db13edd04c1d1\\jetified-play-services-basement-17.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4,7",
@@ -224,37 +241,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\szymo\\Desktop\\testy\\GoDutch\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "17",
-                        "endColumns": "44",
-                        "endOffsets": "57"
+                        "startLines": "4,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "157,57,105",
+                        "endColumns": "45,46,50",
+                        "endOffsets": "198,99,151"
                     },
                     "to": {
-                        "startLines": "424",
-                        "startColumns": "4",
-                        "startOffsets": "25400",
-                        "endColumns": "44",
-                        "endOffsets": "25440"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\szymo\\Desktop\\testy\\GoDutch\\app\\build\\generated\\res\\google-services\\debug\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,199,307,389,493,602,722,819",
-                        "endColumns": "143,107,81,103,108,119,96,73",
-                        "endOffsets": "194,302,384,488,597,717,814,888"
-                    },
-                    "to": {
-                        "startLines": "451,452,453,454,455,456,457,459",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "28346,28490,28598,28680,28784,28893,29013,29184",
-                        "endColumns": "143,107,81,103,108,119,96,73",
-                        "endOffsets": "28485,28593,28675,28779,28888,29008,29105,29253"
+                        "startLines": "153,154,155",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "7699,7745,7792",
+                        "endColumns": "45,46,50",
+                        "endOffsets": "7740,7787,7838"
                     }
                 }
             ]

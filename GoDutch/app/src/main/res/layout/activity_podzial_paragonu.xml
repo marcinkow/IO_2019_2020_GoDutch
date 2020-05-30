@@ -18,13 +18,13 @@
     <ListView
         android:id="@+id/listview_spinner"
         android:layout_width="match_parent"
-        android:layout_height="640dp">
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
 
-    </ListView>
-
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/button_podsumowanie"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="tu gdzieś będzie guzik do podsumowania" />
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="Przejdź do podsumowania" />
 </LinearLayout>

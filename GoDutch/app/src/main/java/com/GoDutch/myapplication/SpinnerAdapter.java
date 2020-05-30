@@ -11,10 +11,12 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 public class SpinnerAdapter extends BaseAdapter {
@@ -23,7 +25,7 @@ public class SpinnerAdapter extends BaseAdapter {
     private ArrayList<String> mData;
     private ArrayList<String> mData2;
     private Context mContext;
-    Hashtable<Integer, Integer> spinnerSelected = new Hashtable<Integer, Integer>();
+    private Hashtable<Integer, Integer> spinnerSelected = new Hashtable<Integer, Integer>();
 
     public SpinnerAdapter(ArrayList<String> data, ArrayList<String> data2, ArrayList<String> spinnerItems, Context context) {
         mData = data;
@@ -46,6 +48,8 @@ public class SpinnerAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
+
 
     @Override
     public View getView(final int row_position, View convertView, ViewGroup parent) {
@@ -113,7 +117,7 @@ public class SpinnerAdapter extends BaseAdapter {
                 return false;
             }
         });
-
         return view;
     }
+
 }
