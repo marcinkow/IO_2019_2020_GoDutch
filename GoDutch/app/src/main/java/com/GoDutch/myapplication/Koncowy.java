@@ -2,6 +2,7 @@ package com.GoDutch.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -21,6 +22,5 @@ public class Koncowy extends AppCompatActivity {
 
         KoncowyAdapter adapter = new KoncowyAdapter(sumy, this);
         lvKoncowy.setAdapter(adapter);
-
     }
 }

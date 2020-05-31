@@ -25,7 +25,7 @@ public class OsobyDoPodzialu extends AppCompatActivity {
     ArrayList<String> napis;
     ArrayList<String> liczby_nasze;
     EditText editText;
-    String tempCH, accountNumber;
+    String tempCH;
     Button btnAdd, btnForward;
 
 
@@ -38,7 +38,6 @@ public class OsobyDoPodzialu extends AppCompatActivity {
         btnAdd = findViewById(R.id.additems);
         btnForward = findViewById(R.id.passForward);
         listView = findViewById(R.id.listView);
-        accountNumber = getIntent().getStringExtra("ustawienia_numer");
         String[] osoby = {getIntent().getStringExtra("ustawienia_imie")};
         arrayList = new ArrayList<>(Arrays.asList(osoby));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
@@ -89,7 +88,6 @@ public class OsobyDoPodzialu extends AppCompatActivity {
                 intent.putExtra("arrayList", arrayList);
                 intent.putExtra("napis",napis);
                 intent.putExtra("liczby_nasze",liczby_nasze);
-                intent.putExtra("ustawienia_numer", accountNumber);
                 startActivity(intent);
             }
         });

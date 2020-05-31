@@ -1,5 +1,7 @@
 package com.GoDutch.myapplication;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ public class KoncowyAdapter extends BaseAdapter {
 
     private HashMap<String, Double> mSumy;
     private Context mContext;
+    String accountNumber;
 
     public KoncowyAdapter(HashMap<String, Double> sumy, Context context) {
         mContext = context;
@@ -51,6 +54,7 @@ public class KoncowyAdapter extends BaseAdapter {
         final TextView textView = (TextView) view.findViewById(R.id.row_item_podsumowanie_osoba);
         final TextView textView1 = (TextView) view.findViewById(R.id.row_item_podsumowanie_suma);
         final Button button = (Button) view.findViewById(R.id.button_podsumowanie);
+        accountNumber = MainActivity.getActivityInstance().getMyAccNum();
 
         Iterator it = mSumy.entrySet().iterator();
         Map.Entry pair = (Map.Entry)it.next();
@@ -61,7 +65,20 @@ public class KoncowyAdapter extends BaseAdapter {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, textView.getText().toString(), Toast.LENGTH_SHORT).show();
+                ClipboardManager clipboard = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip;
+                if(accountNumber.equals(""))
+                {
+                    clip = ClipData.newPlainText("Message", "Cześć " + textView.getText().toString() + "! Wisisz mi " + textView1.getText().toString() + " ziko.");
+
+                }
+                else
+                {
+                    clip = ClipData.newPlainText("Message", "Cześć " + textView.getText().toString() + "! Wisisz mi " + textView1.getText().toString() + " ziko. Oto mój numer konta: " + accountNumber);
+
+                }
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(mContext, "Skopiowano!", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\szymo\\Desktop\\Projekt\\IO_2019_2020_GoDutch\\GoDutch\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v26\\values-v26.xml",
+            "outputFile": "D:\\Dokumenty\\.MojeDokumenty\\Uczelnia\\Go Dutch\\IO_2019_2020_GoDutch\\GoDutch\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v26\\values-v26.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\szymo\\.gradle\\caches\\transforms-2\\files-2.1\\6c5a1a33c151bf1b1b969a4997bc8337\\appcompat-1.1.0\\res\\values-v26\\values-v26.xml",
+                    "source": "C:\\Users\\Jedrek\\.gradle\\caches\\transforms-2\\files-2.1\\6c5a1a33c151bf1b1b969a4997bc8337\\appcompat-1.1.0\\res\\values-v26\\values-v26.xml",
                     "from": {
                         "startLines": "2,3,4,8,12,16",
                         "startColumns": "4,4,4,4,4,4",

@@ -14,7 +14,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="14dp"
         android:layout_marginStart="20dp"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:layout_marginLeft="20dp" />
 
     <TextView
         android:id="@+id/row_item_podsumowanie_suma"
@@ -29,7 +30,7 @@
 
     <Button
         android:id="@+id/button_podsumowanie"
-        android:layout_width="113dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -37,9 +38,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:layout_toEndOf="@+id/row_item_podsumowanie_suma"
-        android:layout_toRightOf="@+id/row_item_podsumowanie_suma"
-        android:text="Skopiuj wiadomość"
-        android:textSize="12sp" />
+        android:drawableRight="@drawable/ic_content_copy_black_24dp"
+        android:drawableEnd="@drawable/ic_content_copy_black_24dp" />
 
 </RelativeLayout>

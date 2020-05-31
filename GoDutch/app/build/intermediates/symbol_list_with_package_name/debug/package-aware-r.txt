@@ -749,6 +749,7 @@ drawable crop_image_menu_rotate_left
 drawable crop_image_menu_rotate_right
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_content_copy_black_24dp
 drawable ic_help
 drawable ic_launcher_background
 drawable ic_launcher_foreground
