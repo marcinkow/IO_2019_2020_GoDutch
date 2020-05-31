@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -56,6 +58,12 @@ public class KoncowyAdapter extends BaseAdapter {
         textView1.setText(pair.getValue().toString());
         it.remove();
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, textView.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
